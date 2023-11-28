@@ -1,6 +1,6 @@
 # Tarea_pedya
 
-## Tarea 5
+## Tarea 5 (BST)
 
 Error en la compilacion
 ```
@@ -124,7 +124,7 @@ std::string BST<T>::preorder() const {
 ```
 Una vez con estas correcciones el bst.h hace que corra bien el main con todos los casos como success :)
 
-## Tarea 9
+## Tarea 9 (SPLAY TREE)
 
 Esta vez no hay problemas en la compilacion, sin embargo hay unos casos que no estan saliendo como el caso 5 y el 6B, en los que podemos ver que los metodos estan mal y no el formato pues la salida es diferente a la que en teoria deberiamos que recibir:
 ```
