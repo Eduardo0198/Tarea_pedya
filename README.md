@@ -27,7 +27,6 @@ zip/test/bst.h:45:6: error: variable or field âaddâ declared void
       |      ^~~~~~~~~~~
 zip/test/bst.h:45:23: error: âTâ was not declared in this scope
    45 | void TreeNode<T>::add(T val) {
-
 ```
 1. Tenia dos errores de sintaxis en la funcion find en la clase TreeNode<T>
 ```
