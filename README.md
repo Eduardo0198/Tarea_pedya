@@ -3,7 +3,7 @@
 ## Tarea 8
 
 Error en la compilacion
-´´´
+```
 In file included from main.cpp:11:0:
 bst.h: In member function 'bool TreeNode<T>::find(T)':
 bst.h:68:27: error: expected ')' before '->' token
@@ -28,17 +28,17 @@ zip/test/bst.h:45:6: error: variable or field âaddâ declared void
 zip/test/bst.h:45:23: error: âTâ was not declared in this scope
    45 | void TreeNode<T>::add(T val) {
 
-´´´
+```
 1. Tenia dos errores de sintaxis en la funcion find en la clase TreeNode<T>
-´´´
+```
 return (left != && left->find(val));.
-´´´
+```
 La comparación != requiere un operando a la izquierda y a la derecha, pero aquí falta el operando a la izquierda. La condición debería ser:
-´´´
+```
 return (left != nullptr && left->find(val));
-´´´
+```
 Sin embargo hubo otro error ya que right o left parecia que no que maneja de forma correcta el nullptr asi que decidi omitirlo y dejarlo con solo con el left->find(val), por lo tanto tendria que cambiar las declaraciones de find y add que estaban trabajando con el left != nullptr, quedando:
-´´´
+```
 FIND
 template <class T>
 bool TreeNode<T>::find(T val) {
@@ -70,8 +70,7 @@ void TreeNode<T>::add(T val) {
     }
     // Si val es igual a value, no hacemos nada ya que no permitimos duplicados.
 }
-
-´´´
+```
 
 
 
