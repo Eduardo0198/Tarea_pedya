@@ -55,13 +55,13 @@ ADD
 template <class T>
 void TreeNode<T>::add(T val) {
     if (val < value) {
-        if (left != nullptr) {
+        if (left != 0) {
             left->add(val);
         } else {
             left = new TreeNode<T>(val);
         }
     } else if (val > value) {
-        if (right != nullptr) {
+        if (right != 0) {
             right->add(val);
         } else {
             right = new TreeNode<T>(val);
