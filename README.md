@@ -123,10 +123,3 @@ std::string BST<T>::preorder() const {
 }
 ```
 Una vez con estas correcciones el bst.h hace que corra bien el main con todos los casos como success :)
-
-
-
-
-
-
-
