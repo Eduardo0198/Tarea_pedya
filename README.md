@@ -1,4 +1,4 @@
-# Tarea_pedya
+# Tareas_pedya
 
 ## Tarea 5 (BST)
 
