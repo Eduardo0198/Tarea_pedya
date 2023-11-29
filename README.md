@@ -1,7 +1,5 @@
 # Tarea_pedya
 
-# Correcciones:
-
 ## Tarea 5 (BST)
 
 Error en la compilacion
