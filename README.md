@@ -126,7 +126,7 @@ Una vez con estas correcciones el bst.h hace que corra bien el main con todos lo
 
 ## Tarea 9 (SPLAY TREE)
 
-Esta vez no hay problemas en la compilacion, sin embargo hay unos casos que no estan saliendo como el caso 5 y el 6B, en los que podemos ver que los metodos estan mal y no el formato pues la salida es diferente a la que en teoria deberiamos que recibir:
+Esta vez no hay problemas en la compilacion, sin embargo hay unos casos que no estan saliendo como el caso 5B y el 6B, en los que podemos ver que los metodos estan mal y no el formato pues la salida es diferente a la que en teoria deberiamos que recibir:
 ```
 5.- esperada [15 7 10 16 17]
  programa [17 16 15 7 10]
@@ -136,3 +136,50 @@ fail
  programa [17 15 7 10]
 fail
 ```
+Al inicio crei que el problema se podria encontar en el preorder, sin embargo en la retro de la tarea me marcaba como error en un caso del remove. 
+```
+add success
+find success
+find success
+find success
+find success
+find success
+find success
+remove success
+ remove fail
+remove success
+remove success
+```
+Al ver los casos 5 y 6 podemos notar que se implementan de la misma manera en el main, por lo que mi funcion de remove no esta mal del todo, sin embargo en la forma de implementarlo es donde habia problemas.
+Ahora sabes que...
+
+ ### Caso 5:
+*Se llama a remove(13), y se identifica el nodo con valor 13 para su eliminación.
+*El sucesor (el siguiente valor en orden) de 13 es el nodo 15.
+*Se realiza la operación remove en el nodo 13, y el sucesor (15) reemplaza al nodo eliminado.
+*La operación splay se realiza para asegurar que el nodo recién insertado o manipulado (en este caso, el nodo 15) esté en la raíz.
+
+#### Caso 6:
+*Se llama a remove(16), y se identifica el nodo con valor 16 para su eliminación.
+*El sucesor (el siguiente valor en orden) de 16 es el nodo 17.
+*Se realiza la operación remove en el nodo 16, y el sucesor (17) reemplaza al nodo eliminado.
+*La operación splay se realiza para asegurar que el nodo recién insertado o manipulado (en este caso, el nodo 17) esté en la raíz.
+
+### Comportamiento de remove corregida
+Si el valor a eliminar (val) es menor que el valor del nodo actual (value):
+
+Se verifica si el hijo izquierdo (left) existe.
+Si el hijo izquierdo tiene el valor que se va a eliminar, se procede a reemplazar el nodo con su sucesor (si tiene ambos hijos) o con su hijo derecho o izquierdo, según corresponda.
+Se ajustan las conexiones para mantener la estructura del árbol.
+Si no hay hijo izquierdo, no hay nada que hacer.
+Si el valor a eliminar (val) es mayor que el valor del nodo actual (value):
+
+Se verifica si el hijo derecho (right) existe.
+Si el hijo derecho tiene el valor que se va a eliminar, se procede de manera similar a la lógica anterior.
+Se ajustan las conexiones para mantener la estructura del árbol.
+Si no hay hijo derecho, no hay nada que hacer.
+Si el valor a eliminar es igual al valor del nodo actual, significa que se ha encontrado el nodo a eliminar.
+
+Se realiza la lógica para encontrar el sucesor y se reemplaza el nodo actual con el sucesor (si tiene ambos hijos) o con su hijo derecho o izquierdo, según corresponda.
+Se ajustan las conexiones para mantener la estructura del árbol.
+Al final, la función retorna el nodo actual (que puede haber sido modificado durante la operación).
