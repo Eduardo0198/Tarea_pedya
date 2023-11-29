@@ -28,7 +28,7 @@ zip/test/bst.h:45:6: error: variable or field âaddâ declared void
 zip/test/bst.h:45:23: error: âTâ was not declared in this scope
    45 | void TreeNode<T>::add(T val) {
 ```
-1. Tenia dos errores de sintaxis en la funcion find en la clase TreeNode<T>
+Tenia dos errores de sintaxis en la funcion find en la clase TreeNode<T>
 ```
 return (left != && left->find(val));.
 ```
@@ -173,13 +173,72 @@ Si el hijo izquierdo tiene el valor que se va a eliminar, se procede a reemplaza
 Se ajustan las conexiones para mantener la estructura del árbol.
 Si no hay hijo izquierdo, no hay nada que hacer.
 Si el valor a eliminar (val) es mayor que el valor del nodo actual (value):
-
+```
+if (val < value) {
+      if (left != 0) {
+        if (left->value == val) { //verifica que el hijo exista
+          old = left;
+          if (old->left != 0 && old->right != 0) {
+            succ = left->succesor();
+            succ->left = old->left;
+            succ->left->parent = succ;
+            succ->right = old->right;
+            succ->right->parent = succ;
+          } else if (old->right != 0) {
+            old->right->parent = left->parent;
+            left = old->right;
+            return this;
+          } else if (old->left != 0) {
+            old->left->parent = left->parent;
+            left = old->left;
+            return this;
+          } else {
+            left = 0;
+            return this;
+          }
+        } else {
+          return left->remove(val);
+        }
+      }
+```
 Se verifica si el hijo derecho (right) existe.
 Si el hijo derecho tiene el valor que se va a eliminar, se procede de manera similar a la lógica anterior.
 Se ajustan las conexiones para mantener la estructura del árbol.
 Si no hay hijo derecho, no hay nada que hacer.
 Si el valor a eliminar es igual al valor del nodo actual, significa que se ha encontrado el nodo a eliminar.
-
-Se realiza la lógica para encontrar el sucesor y se reemplaza el nodo actual con el sucesor (si tiene ambos hijos) o con su hijo derecho o izquierdo, según corresponda.
+```
+else if (val > value) {
+      if (right != 0) {
+        if (right->value == val) { //verifica si el hijo derecho existe
+          old = right;
+          if (old->left != 0 && old->right != 0) {
+            succ = right->succesor();
+            succ->left = old->left;
+            succ->left->parent = succ;
+            succ->right = old->right;
+            succ->right->parent = succ;
+          } else if (old->right != 0) {
+            old->right->parent = right->parent;
+            right = old->right;
+            return this;
+          } else if (old->left != 0) {
+            old->left->parent = right->parent;
+            right = old->left;
+            return this;
+          } else {
+            right = 0;
+            return this;
+          }
+        } else {
+          return right->remove(val);
+        }
+      }
+    }
+```
+Basicamente el codigo esta hecho para encontrar el sucesor y reemplazar el nodo actual con el sucesor (si tiene ambos hijos) o con su hijo derecho o izquierdo, según corresponda.
 Se ajustan las conexiones para mantener la estructura del árbol.
-Al final, la función retorna el nodo actual (que puede haber sido modificado durante la operación).
+Al final, la función retorna el nodo actual (que puede haber sido modificado durante la operación), con un:
+```
+return this;
+```
+Con este cambio en el metodo remove de Node hace que el caso 5By 6B corran con success :D
